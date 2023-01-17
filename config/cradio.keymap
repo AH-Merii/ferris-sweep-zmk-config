@@ -6,8 +6,8 @@
 #include <dt-bindings/zmk/bt.h>
 
 // Home row mods macro
-#define HRML(k1,k2,k3,k4) &hm LSHFT k1  &hm LALT k2  &hm LCTRL k3  &hm LGUI k4
-#define HRMR(k1,k2,k3,k4) &hm RGUI k1  &hm RCTRL k2  &hm RALT k3  &hm RSHFT k4
+#define HRML(k1,k2,k3,k4) &hm LSHFT k1  &hm LGUI k2  &hm LCTRL k3  &hm LALT k4
+#define HRMR(k1,k2,k3,k4) &hm RALT k1  &hm RCTRL k2  &hm RGUI k3  &hm RSHFT k4
 
 / {
     behaviors {
