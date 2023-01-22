@@ -6,26 +6,39 @@
 #include <dt-bindings/zmk/bt.h>
 
 // Home row mods macro
-#define HRML(k1,k2,k3,k4) &hm LSHFT k1  &hm LGUI k2  &hm LCTRL k3  &hm LALT k4
-#define HRMR(k1,k2,k3,k4) &hm RALT k1  &hm RCTRL k2  &hm RGUI k3  &hm RSHFT k4
+#define HRML(k1,k2,k3,k4) &ht LSHFT k1  &ht LGUI k2  &ht LCTRL k3  &ht LALT k4
+#define HRMR(k1,k2,k3,k4) &ht RALT k1  &ht RCTRL k2  &ht RGUI k3  &ht RSHFT k4
 
 / {
     behaviors {
-        hm: homerow_mods {
+        ht: hold_tap {
             compatible = "zmk,behavior-hold-tap";
             label = "HOMEROW_MODS";
             #binding-cells = <2>;
-            tapping-term-ms = <150>;
-            quick-tap-ms = <0>;
+            tapping-term-ms = <400>;
+            quick-tap-ms = <150>;
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
+        };
+    };
+
+
+    behaviors {
+        htl: hold_tap_layer {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOMEROW_MODS";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+            flavor = "tap-preferred";
+            bindings = <&mo>, <&kp>;
         };
     };
 
     conditional_layers {
         compatible = "zmk,conditional-layers";
         func_layer {
-            if-layers = <1 2>;
+            if-layers = <1 3>;
             then-layer = <5>;
         };
     };
@@ -42,9 +55,9 @@
            HRML(A,        S,         D,         F)     &kp G          &kp H      HRMR(J,        K,         L,        SEMI)
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│  Z       │  X       │  C       │  V       │  B       │   │  N       │  M       │ , <      │ . >      │ / ?      │
-           &kp Z      &kp X      &kp C      &kp V      &kp B          &kp N      &kp M      &kp COMMA  &kp DOT    &hm LSHIFT FSLH
+           &kp Z      &kp X      &kp C      &kp V      &kp B          &kp N      &kp M      &kp COMMA  &kp DOT    &kp FSLH
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                            &lt 3 ENTER &lt 2 ESC     &lt 1 BSPC &lt 4 SPACE
+                                            &htl 3 BSPC &htl 3 ENTER  &htl 4 SPACE &htl 1 ESC
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -61,7 +74,7 @@
         //│          │          │          │          │          │   │          │          │          │          │          │
            &trans     &trans     &trans     &trans     &trans         &trans     &trans     &trans     &trans     &trans
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                            &trans     &trans         &trans     &trans
+                                            &trans     &htl 2 ENTER   &trans     &trans
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -86,8 +99,8 @@
         number_layer {
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //│          │          │          │          │          │   │          │          │          │          │          │
-           &trans     &trans     &trans     &trans     &trans         &trans     &trans     &trans     &trans     &trans  
+        //│   TAB    │          │          │          │          │   │          │          │          │          │          │
+           &kp TAB    &trans     &trans     &trans     &trans         &trans     &trans     &trans     &trans     &trans  
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│          │          │          │          │          │   │          │          │          │          │          │
            &kp N1     &kp N2     &kp N3     &kp N4     &kp N5         &kp N6     &kp N7     &kp N8     &kp N9     &kp N0      
