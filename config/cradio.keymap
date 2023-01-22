@@ -1,4 +1,4 @@
-// Copyright (c) 2022 The ZMK Contributors
+// Copyrighm (c) 2022 The ZMK Contributors
 // SPDX-License-Identifier: MIT
 
 #include <behaviors.dtsi>
@@ -6,17 +6,17 @@
 #include <dt-bindings/zmk/bt.h>
 
 // Home row mods macro
-#define HRML(k1,k2,k3,k4) &ht LSHFT k1  &ht LGUI k2  &ht LCTRL k3  &ht LALT k4
-#define HRMR(k1,k2,k3,k4) &ht RALT k1  &ht RCTRL k2  &ht RGUI k3  &ht RSHFT k4
+#define HRML(k1,k2,k3,k4) &hm LSHFT k1  &hm LGUI k2  &hm LCTRL k3  &hm LALT k4
+#define HRMR(k1,k2,k3,k4) &hm RALT k1  &hm RCTRL k2  &hm RGUI k3  &hm RSHFT k4
 
 / {
     behaviors {
-        ht: hold_tap {
+        hm: hold_tap {
             compatible = "zmk,behavior-hold-tap";
             label = "HOMEROW_MODS";
             #binding-cells = <2>;
             tapping-term-ms = <400>;
-            quick-tap-ms = <150>;
+            quick-tap-ms = <250>;
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
         };
@@ -26,10 +26,10 @@
     behaviors {
         htl: hold_tap_layer {
             compatible = "zmk,behavior-hold-tap";
-            label = "HOMEROW_MODS";
+            label = "Thumb_CLUSTER";
             #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <150>;
+            tapping-term-ms = <250>;
+            quick-tap-ms = <200>;
             flavor = "tap-preferred";
             bindings = <&mo>, <&kp>;
         };
@@ -68,7 +68,7 @@
         //│   TAB    │          │          │          │          │   │          │          │          │          │    DEL   │
            &kp TAB    &trans     &trans     &trans     &trans         &trans     &trans     &trans     &trans     &kp DEL
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│          │          │          │          │          │   │ LEFT     │ DOWN     │ UP       │ RIGHT    │          │
+        //│          │          │          │          │          │   │ LEFT     │ DOWN     │ UP       │ RIGhm    │          │
            &trans     &trans     &trans     &trans     &trans         &kp LARW   &kp DARW   &kp UARW   &kp RARW   &trans
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│          │          │          │          │          │   │          │          │          │          │          │
@@ -105,8 +105,8 @@
         //│          │          │          │          │          │   │          │          │          │          │          │
            &kp N1     &kp N2     &kp N3     &kp N4     &kp N5         &kp N6     &kp N7     &kp N8     &kp N9     &kp N0      
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│          │          │          │          │          │   │          │    ` ~   │    ' "   │    "     │          │
-           &trans     &trans     &trans     &trans     &trans         &trans     &kp GRAVE  &kp SQT    &kp DQT    &trans
+        //│          │          │          │          │          │   │    ` ~   │    ' "   │    "     │          │          │
+           &trans     &trans     &trans     &trans     &trans         &kp GRAVE  &kp SQT    &kp DQT    &trans     &trans
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                             &trans     &trans         &trans     &trans
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
